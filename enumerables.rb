@@ -15,24 +15,11 @@ module Enumerable
   end
 
   def my_select
-   array = []
-   self.my_each do |x|
-     if yield x
-      array.push(x)
+    array = []
+    my_each do |i| 
+      array.push(i) if yield i 
     end
     array
-   end
   end
 end
 # rubocop:enable Style/For
-# friends = ['Sharon', 'Leo', 'Leila', 'Brian', 'Arun']
-# invited_list = []
-
-# friends.each do |friend|
-#   if friend != 'Brian'
-#     invited_list.push(friend)
-#   end
-# end
-friends = ['Sharon', 'Leo', 'Leila', 'Brian', 'Arun']
-
-friends.my_select { |friend| friend != 'Brian' }
