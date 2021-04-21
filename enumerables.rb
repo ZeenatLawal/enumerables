@@ -1,3 +1,4 @@
+# rubocop:disable Style/For
 module Enumerable
   def my_each
     for index in self
@@ -5,3 +6,4 @@ module Enumerable
     end
   end
 end
+# rubocop:enable Style/For
