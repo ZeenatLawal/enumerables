@@ -27,5 +27,16 @@ module Enumerable
 
     my_each { |i| return false if yield i }
   end
+
+  def my_any?
+    if empty?
+      return true   
+    elsif self.include?(nil)
+    return false
+    elsif self.include?(false)
+    return false
+    else my_select { |i| return true if yield i }
+    end
+  end
 end
 # rubocop:enable Style/For
