@@ -74,5 +74,18 @@ module Enumerable
       end
     end
   end
+
+  def my_count
+    i = 0
+    self.my_each do |x|
+      if yield x
+        i += 1
+      end
+    end
+    i
+  end
 end
 # rubocop:enable Style/For, Style/GuardClause
+
+letters = %w(a a a b c d a)
+puts letters.count("a")
