@@ -21,5 +21,11 @@ module Enumerable
     end
     array
   end
+
+  def my_all?
+    return true if empty?
+
+    my_each { |i| return false if yield i }
+  end
 end
 # rubocop:enable Style/For
