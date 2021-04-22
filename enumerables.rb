@@ -1,4 +1,4 @@
-# rubocop:disable Style/For
+# rubocop:disable Style/For, Style/GuardClause
 module Enumerable
   def my_each
     for index in self
@@ -23,9 +23,25 @@ module Enumerable
   end
 
   def my_all?
-    return true if empty?
-
-    my_each { |i| return false if yield i }
+    if empty?
+      true
+    elsif block_given?
+      my_each do |i|
+        if yield i
+          return true
+        else
+          return false
+        end
+      end
+    else
+      my_each do |i|
+        if i
+          return true
+        else
+          return false
+        end
+      end
+    end
   end
 
   def my_any?
@@ -37,4 +53,4 @@ module Enumerable
     end
   end
 end
-# rubocop:enable Style/For
+# rubocop:enable Style/For, Style/GuardClause
