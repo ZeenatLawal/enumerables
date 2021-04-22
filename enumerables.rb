@@ -75,17 +75,33 @@ module Enumerable
     end
   end
 
-  def my_count
+  def my_count(*args)
     i = 0
-    self.my_each do |x|
-      if yield x
-        i += 1
+    if !block_given?
+        if args.empty?
+          self.my_each do |x| i += 1
+          end
+        else
+          self.my_each do |x|
+          if x == args[0]
+          i += 1
+         end
+        end
+        end
+    else
+        self.my_each do |x|
+        if yield x
+          i += 1
+        end
       end
+      end
+      i
     end
-    i
-  end
 end
 # rubocop:enable Style/For, Style/GuardClause
 
-letters = %w(a a a b c d a)
-puts letters.count("a")
+letters =["a", "a", "a", "b", "c", "d", "a"]
+puts letters.my_count("a")
+
+numbers = [1,2,3,4,5,6]
+puts numbers.my_count(&:odd?)
