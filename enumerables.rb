@@ -30,11 +30,9 @@ module Enumerable
 
   def my_any?
     if empty?
-      return true   
-    elsif self.include?(nil)
-    return false
-    elsif self.include?(false)
-    return false
+      true
+    elsif include?(nil) || include?(false)
+      false
     else my_select { |i| return true if yield i }
     end
   end
