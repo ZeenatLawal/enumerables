@@ -92,5 +92,13 @@ module Enumerable
     end
     i
   end
+
+  def my_map
+    array = []
+    for index in self
+      array.push(yield index)
+    end
+    array
+  end
 end
 # rubocop:enable Style/For, Style/GuardClause
