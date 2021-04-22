@@ -74,5 +74,23 @@ module Enumerable
       end
     end
   end
+
+  def my_count(*args)
+    i = 0
+    if block_given?
+      my_each do |x|
+        i += 1 if yield x
+      end
+    elsif args.empty?
+      my_each do |_x|
+        i += 1
+      end
+    else
+      my_each do |x|
+        i += 1 if x == args[0]
+      end
+    end
+    i
+  end
 end
 # rubocop:enable Style/For, Style/GuardClause
