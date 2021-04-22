@@ -77,31 +77,20 @@ module Enumerable
 
   def my_count(*args)
     i = 0
-    if !block_given?
-        if args.empty?
-          self.my_each do |x| i += 1
-          end
-        else
-          self.my_each do |x|
-          if x == args[0]
-          i += 1
-         end
-        end
-        end
+    if block_given?
+      my_each do |x|
+        i += 1 if yield x
+      end
+    elsif args.empty?
+      my_each do |_x|
+        i += 1
+      end
     else
-        self.my_each do |x|
-        if yield x
-          i += 1
-        end
+      my_each do |x|
+        i += 1 if x == args[0]
       end
-      end
-      i
     end
+    i
+  end
 end
 # rubocop:enable Style/For, Style/GuardClause
-
-letters =["a", "a", "a", "b", "c", "d", "a"]
-puts letters.my_count("a")
-
-numbers = [1,2,3,4,5,6]
-puts numbers.my_count(&:odd?)
