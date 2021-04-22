@@ -52,5 +52,27 @@ module Enumerable
     else my_select { |i| return true if yield i }
     end
   end
+
+  def my_none?
+    if empty?
+      true
+    elsif block_given?
+      my_each do |i|
+        if yield i
+          return false
+        else
+          return true
+        end
+      end
+    else
+      my_each do |i|
+        if i
+          return false
+        else
+          return true
+        end
+      end
+    end
+  end
 end
 # rubocop:enable Style/For, Style/GuardClause
