@@ -100,5 +100,11 @@ module Enumerable
     end
     array
   end
+
+  def my_inject(num = 0)
+    result = num
+    my_each { |item| result = yield(result, item) }
+    result
+  end
 end
 # rubocop:enable Style/For, Style/GuardClause
