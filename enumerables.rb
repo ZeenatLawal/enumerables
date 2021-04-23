@@ -3,12 +3,16 @@
 
 module Enumerable
   def my_each
+    return enum_for unless block_given?
+
     for index in self
       yield index
     end
   end
 
   def my_each_with_index
+    return enum_for unless block_given?
+
     b = 0
     for a in self
       yield a, b
@@ -17,6 +21,8 @@ module Enumerable
   end
 
   def my_select
+    return enum_for unless block_given?
+
     array = []
     my_each do |i|
       array.push(i) if yield i
@@ -24,26 +30,19 @@ module Enumerable
     array
   end
 
-  def my_all?
-    if empty?
-      true
-    elsif block_given?
-      my_each do |i|
-        if yield i
-          return true
-        else
-          return false
-        end
-      end
+  def my_all?(args = nil)
+    if block_given?
+      my_each { |i| return false if yield i == false}
+    elsif args.nil?
+      my_each { |i| return false if i == false || i.nil?}
+    elsif args.instance_of?(Class)
+      my_each { |i| return false if i.class.superclass != args && i.class != args}
+    elsif args.instance_of?(Regexp)
+      my_each { |i| return false if !args.match(i)}
     else
-      my_each do |i|
-        if i
-          return true
-        else
-          return false
-        end
-      end
+      my_each { |i| return false if i != args}
     end
+    true
   end
 
   def my_any?
@@ -96,6 +95,8 @@ module Enumerable
   end
 
   def my_map(arg = nil)
+    return enum_for unless block_given?
+
     array = []
     if arg.nil? && block_given?
       my_each { |index| array.push(yield index) }
