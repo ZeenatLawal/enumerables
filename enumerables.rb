@@ -94,12 +94,15 @@ module Enumerable
     i
   end
 
-  def my_map
+  def my_map(arg = nil)
     array = []
-    for index in self
-      array.push(yield index)
-    end
-    array
+    if !arg.nil?
+      result = arg
+      my_each { |index| array.push(result.call (index)) }
+    else  
+      my_each { |index| array.push(yield index) }
+  end
+  array
   end
 
   def my_inject(num = 0, sym = nil)
