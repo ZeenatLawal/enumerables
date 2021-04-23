@@ -96,13 +96,13 @@ module Enumerable
 
   def my_map(arg = nil)
     array = []
-    if !arg.nil?
-      result = arg
-      my_each { |index| array.push(result.call (index)) }
-    else  
+    if arg.nil?
       my_each { |index| array.push(yield index) }
-  end
-  array
+    else
+      result = arg
+      my_each { |index| array.push(result.call(index)) }
+    end
+    array
   end
 
   def my_inject(num = 0, sym = nil)
