@@ -96,7 +96,7 @@ module Enumerable
 
   def my_map(arg = nil)
     array = []
-    if arg.nil?
+    if arg.nil? && block_given?
       my_each { |index| array.push(yield index) }
     else
       result = arg
