@@ -1,4 +1,5 @@
 # rubocop:disable Style/For, Style/GuardClause
+# rubocop:disable  Metrics/ModuleLength
 module Enumerable
   def my_each
     for index in self
@@ -101,10 +102,16 @@ module Enumerable
     array
   end
 
-  def my_inject(num = 0)
-    result = num
-    my_each { |item| result = yield(result, item) }
+  def my_inject(num = 0, sym = nil)
+    if num.instance_of?(Integer) || num.instance_of?(String)
+      result = num
+      my_each { |item| result = yield(result, item) }
+    elsif sym.instance_of?(Symbol)
+      result = num
+      my_each { |item| result = result.send(sym, item) }
+    end
     result
   end
 end
 # rubocop:enable Style/For, Style/GuardClause
+# rubocop:enable  Metrics/ModuleLength
