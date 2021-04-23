@@ -1,5 +1,5 @@
-# rubocop:disable Style/For, Style/GuardClause
-# rubocop:disable Metrics/ModuleLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:disable Style/For
+# rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
 module Enumerable
   def my_each
@@ -56,15 +56,15 @@ module Enumerable
 
   def my_none?(args = nil)
     if block_given?
-      my_each { |i| return false if yield i}
+      my_each { |i| return false if yield i }
     elsif args.instance_of?(Regexp)
-      my_each { |i| return false if args.match(i)}
+      my_each { |i| return false if args.match(i) }
     elsif args.instance_of?(Class)
-      my_each { |i| return false if i.is_a?(args)}
+      my_each { |i| return false if i.is_a?(args) }
     elsif args.nil?
-      my_each { |i| return false if i}
+      my_each { |i| return false if i }
     else
-      my_each { |i| return false if i == args}
+      my_each { |i| return false if i == args }
     end
     true
   end
@@ -112,8 +112,8 @@ module Enumerable
   end
 end
 
-# rubocop:enable Style/For, Style/GuardClause
-# rubocop:enable Metrics/ModuleLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:enable Style/For
+# rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
 def multiply_els(array)
   array.my_inject(1) { |index, result| result * index }
