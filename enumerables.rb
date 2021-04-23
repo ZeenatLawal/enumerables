@@ -1,5 +1,6 @@
 # rubocop:disable Style/For, Style/GuardClause
 # rubocop:disable  Metrics/ModuleLength
+
 module Enumerable
   def my_each
     for index in self
@@ -116,6 +117,7 @@ module Enumerable
     result
   end
 end
+
 # rubocop:enable Style/For, Style/GuardClause
 # rubocop:enable  Metrics/ModuleLength
 
