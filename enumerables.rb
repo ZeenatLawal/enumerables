@@ -109,10 +109,10 @@ module Enumerable
   end
 
   def my_inject(num = nil, sym = nil)
-    if block_given? 
+    if block_given?
       result = num
       my_each do |item|
-      result = result.nil? ? item : yield(result, item)
+        result = result.nil? ? item : yield(result, item)
       end
       result
     elsif sym.instance_of?(Symbol) || sym.instance_of?(String)
@@ -138,6 +138,3 @@ end
 def multiply_els(array)
   array.my_inject(1) { |index, result| result * index }
 end
-
-
-
