@@ -115,13 +115,13 @@ module Enumerable
       result = result.nil? ? item : yield(result, item)
       end
       result
-    elsif sym.instance_of?(Symbol)
+    elsif sym.instance_of?(Symbol) || sym.instance_of?(String)
       result = num
       my_each do |item|
         result = result.nil? ? item : result.send(sym, item)
       end
       result
-    elsif num.instance_of?(Integer) || num.instance_of?(String)
+    elsif num.instance_of?(Symbol) || num.instance_of?(String)
       result = sym
       my_each do |item|
         result = result.nil? ? item : result.send(num, item)
