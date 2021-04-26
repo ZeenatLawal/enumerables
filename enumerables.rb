@@ -31,27 +31,35 @@ module Enumerable
   end
 
   def my_all?(args = nil)
+    self.to_a()
     if block_given?
-      my_each { |i| return false if yield i == false }
+      my_each { |i| return false if yield i == false}
     elsif args.nil?
-      my_each { |i| return false if i == false || i.nil? }
+      my_each { |i| return false if i == false || i.nil?}
     elsif args.instance_of?(Class)
-      my_each { |i| return false if i.class.superclass != args && i.class != args }
+      my_each { |i| return false if i.class.superclass != args && i.class != args}
     elsif args.instance_of?(Regexp)
-      my_each { |i| return false unless args.match(i) }
+      my_each { |i| return false if !args.match(i)}
     else
-      my_each { |i| return false if i != args }
+      my_each { |i| return false if i != args}
     end
     true
   end
 
-  def my_any?
-    if empty?
-      true
-    elsif include?(nil) || include?(false)
-      false
-    else my_select { |i| return true if yield i }
+  def my_any?(args = nil)
+    self.to_a()
+    if block_given?
+      my_each { |i| return true if yield i }
+    elsif args.nil?
+      my_each { |i| return true if i == true || !i.nil?}
+    elsif args.instance_of?(Class)
+      my_each { |i| return true if i.class == args || i.class.superclass == args}
+    elsif args.instance_of?(Regexp)
+      my_each { |i| return true if args.match(i)}
+    else
+      my_each { |i| return true if i == args}
     end
+    false
   end
 
   def my_none?(args = nil)
