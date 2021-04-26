@@ -1,5 +1,5 @@
 # rubocop:disable Style/For
-# rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/ModuleLength
 
 module Enumerable
   def my_each
@@ -31,33 +31,33 @@ module Enumerable
   end
 
   def my_all?(args = nil)
-    self.to_a()
+    to_a
     if block_given?
-      my_each { |i| return false if yield i == false}
+      my_each { |i| return false if yield i == false }
     elsif args.nil?
-      my_each { |i| return false if i == false || i.nil?}
+      my_each { |i| return false if i == false || i.nil? }
     elsif args.instance_of?(Class)
-      my_each { |i| return false if i.class.superclass != args && i.class != args}
+      my_each { |i| return false if i.class.superclass != args && i.class != args }
     elsif args.instance_of?(Regexp)
-      my_each { |i| return false if !args.match(i)}
+      my_each { |i| return false unless args.match(i) }
     else
-      my_each { |i| return false if i != args}
+      my_each { |i| return false if i != args }
     end
     true
   end
 
   def my_any?(args = nil)
-    self.to_a()
+    to_a
     if block_given?
       my_each { |i| return true if yield i }
     elsif args.nil?
-      my_each { |i| return true if i == true || !i.nil?}
+      my_each { |i| return true if i == true || !i.nil? }
     elsif args.instance_of?(Class)
-      my_each { |i| return true if i.class == args || i.class.superclass == args}
+      my_each { |i| return true if i.instance_of?(args) || i.class.superclass == args }
     elsif args.instance_of?(Regexp)
-      my_each { |i| return true if args.match(i)}
+      my_each { |i| return true if args.match(i) }
     else
-      my_each { |i| return true if i == args}
+      my_each { |i| return true if i == args }
     end
     false
   end
@@ -121,7 +121,7 @@ module Enumerable
 end
 
 # rubocop:enable Style/For
-# rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/ModuleLength
 
 def multiply_els(array)
   array.my_inject(1) { |index, result| result * index }
