@@ -108,13 +108,25 @@ module Enumerable
     array
   end
 
-  def my_inject(num = 0, sym = nil)
-    if num.instance_of?(Integer) || num.instance_of?(String)
+  def my_inject(num = nil, sym = nil)
+    if block_given? 
       result = num
-      my_each { |item| result = yield(result, item) }
+      my_each do |item|
+      result = result.nil? ? item : yield(result, item)
+      end
+      result
     elsif sym.instance_of?(Symbol)
       result = num
-      my_each { |item| result = result.send(sym, item) }
+      my_each do |item|
+        result = result.nil? ? item : result.send(sym, item)
+      end
+      result
+    elsif num.instance_of?(Integer) || num.instance_of?(String)
+      result = sym
+      my_each do |item|
+        result = result.nil? ? item : result.send(num, item)
+      end
+      result
     end
     result
   end
@@ -126,3 +138,6 @@ end
 def multiply_els(array)
   array.my_inject(1) { |index, result| result * index }
 end
+
+
+
