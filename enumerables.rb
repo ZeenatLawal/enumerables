@@ -109,6 +109,7 @@ module Enumerable
   end
 
   def my_inject(num = nil, sym = nil)
+    raise LocalJumpError, 'no block or argument given' if !block_given? || !args.nil?
     if block_given?
       result = num
       my_each do |item|
