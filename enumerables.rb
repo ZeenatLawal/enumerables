@@ -34,7 +34,7 @@ module Enumerable
   def my_all?(args = nil)
     to_a
     if block_given?
-      my_each { |i| return false unless yield(i) == true  }
+      my_each { |i| return false unless yield(i) == true }
     elsif args.nil?
       my_each { |i| return false if i == false || i.nil? }
     elsif args.instance_of?(Class)
