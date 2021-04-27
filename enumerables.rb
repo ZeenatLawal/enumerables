@@ -1,5 +1,5 @@
 # rubocop:disable Style/For
-# rubocop:disable Metrics/ModuleLength, Metrics/MethodLength
+# rubocop:disable Metrics/ModuleLength
 # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
 module Enumerable
@@ -110,33 +110,30 @@ module Enumerable
   end
 
   def my_inject(num = nil, sym = nil)
-    raise LocalJumpError, 'no block or argument given' if !block_given? || !args.nil?
-
-    if block_given?
-      result = num
-      my_each do |item|
-        result = result.nil? ? item : yield(result, item)
-      end
-      result
-    elsif sym.instance_of?(Symbol) || sym.instance_of?(String)
+    if sym.instance_of?(Symbol) || sym.instance_of?(String)
       result = num
       my_each do |item|
         result = result.nil? ? item : result.send(sym, item)
       end
       result
     elsif num.instance_of?(Symbol) || num.instance_of?(String)
-      result = sym
+      result = nil
       my_each do |item|
         result = result.nil? ? item : result.send(num, item)
       end
       result
+    else
+      result = num
+      my_each do |item|
+        result = result.nil? ? item : yield(result, item)
+      end
     end
     result
   end
 end
 
 # rubocop:enable Style/For
-# rubocop:enable Metrics/ModuleLength, Metrics/MethodLength
+# rubocop:enable Metrics/ModuleLength
 # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
 def multiply_els(array)
