@@ -33,4 +33,19 @@ RSpec.describe Enumerable do
       end
     end
   end
+
+  describe '#my_select' do
+    context 'if block not given' do
+      it 'returns enum' do
+        expect(array.my_select).to be_an Enumerator
+      end
+    end
+
+    context 'if block given' do
+      it 'yields selected items' do
+        arr = array.my_select { |friend| friend != 'Brian' }
+        expect(arr).to eq(%w[Sharon Leo Leila Arun])
+      end
+    end
+  end
 end
