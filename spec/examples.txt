@@ -1,4 +1,4 @@
 example_id                   | status | run_time        |
 ---------------------------- | ------ | --------------- |
-./spec/enum_spec.rb[1:1:1:1] | passed | 0.00058 seconds |
-./spec/enum_spec.rb[1:1:2:1] | passed | 0.0007 seconds  |
+./spec/enum_spec.rb[1:1:1:1] | passed | 0.00081 seconds |
+./spec/enum_spec.rb[1:1:2:1] | passed | 0.00076 seconds |
