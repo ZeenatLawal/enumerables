@@ -29,6 +29,20 @@
 - Create a branch to work on
 - Now You can edit the code and do a pull request
 
+## How to set up tests
+
+- Boot up your terminal and punch in "gem install rspec" to install RSpec
+- You can verify your version of RSpec with "rspec --version"
+- cd into project directory "Tic-Tac-Toe" and type "rspec --init" to initialize RSpec within the project
+- This will generate two files, ".rspec" and "spec/spec_helper.rb"
+- You can create the ruby test file inside the sprc directory (eg: enum_spec.rb)
+
+## How to run tests
+
+- You can simply run "rspec" in the terminal by cd into the directory in order torun the tests
+- You can also run "rspec file-path" for the particular file you want to test from the directory
+- You can run "rubocop" inorder to check the linter errors
+
 ## Authors
 
 👤 **Zeenat Lawal**
