@@ -29,7 +29,7 @@ RSpec.describe Enumerable do
       it 'yields item with index' do
         arr = []
         array.my_each_with_index { |friend, index| arr.push("#{index}: #{friend}") if index.odd? }
-        expect(arr).to eq(["1: Leo", "3: Brian"])
+        expect(arr).to eq(['1: Leo', '3: Brian'])
       end
     end
   end
