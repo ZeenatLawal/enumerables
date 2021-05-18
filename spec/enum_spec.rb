@@ -12,9 +12,8 @@ RSpec.describe Enumerable do
 
     context 'if block given' do
       it 'yields index' do
-        arr = []
-        array.my_each { |index| arr.push(index) }
-        expect(arr).to eq(%w[Sharon Leo Leila Brian Arun])
+        array.my_each { |index| puts index }
+        expect(array).to eq(%w[Sharon Leo Leila Brian Arun])
       end
     end
   end
