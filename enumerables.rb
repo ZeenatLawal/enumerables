@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # rubocop:disable Style/For
 # rubocop:disable Metrics/ModuleLength
 # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
