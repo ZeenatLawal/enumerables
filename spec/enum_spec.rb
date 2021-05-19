@@ -11,8 +11,8 @@ describe Enumerable do
 
     context 'if block given' do
       it 'yields item' do
-        array.my_each { |friend| puts friend }
-        expect(array).to eq(%w[Sharon Leo Leila Brian Arun])
+        arr = array.my_each { |friend| friend }
+        expect(arr).to eq(%w[Sharon Leo Leila Brian Arun])
       end
     end
   end
@@ -44,6 +44,19 @@ describe Enumerable do
       it 'yields selected items' do
         arr = array.my_select { |friend| friend != 'Brian' }
         expect(arr).to eq(%w[Sharon Leo Leila Arun])
+      end
+    end
+  end
+
+  describe "#my_all?" do
+    context 'if block given' do
+      it "returns false if all the items doesn't yield true" do
+        expect(%w[Sharon Leo Leila Brian Arun].my_all? { |word| word.length > 5 }).to be(false)
+      end
+    end
+    context 'if block not given' do
+      it "returns false if all the items doesn't satisfy a given condition" do
+        expect(%w[Sharon Leo Leila Brian Arun].my_all?(/a/)).to be(false)
       end
     end
   end
