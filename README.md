@@ -45,17 +45,17 @@
 
 ## Authors
 
-👤 **Zeenat Lawal**
-
-- GitHub: [@ZeenatLawal](https://github.com/ZeenatLawal)
-- Twitter: [@lawal_zeenat](https://twitter.com/lawal_zeenat)
-- LinkedIn: [Zeenat Lawal](https://www.linkedin.com/in/zeenat-lawal-665872120/)
-
 👤 **Bhagyashree Patra**
 
 - GitHub: [@Vagyasri](https://github.com/Vagyasri)
 - Twitter: [@Vagyasri](https://twitter.com/Vagyasri)
 - LinkedIn: [Bhagyashree Patra](https://www.linkedin.com/in/bhagyashree-patra-029bb059/)
+
+👤 **Zeenat Lawal**
+
+- GitHub: [@ZeenatLawal](https://github.com/ZeenatLawal)
+- Twitter: [@lawal_zeenat](https://twitter.com/lawal_zeenat)
+- LinkedIn: [Zeenat Lawal](https://www.linkedin.com/in/zeenat-lawal-665872120/)
 
 ## 🤝 Contributing
 
