@@ -130,7 +130,7 @@ describe Enumerable do
     context 'if block given' do
       it 'returns items that passes our filter' do
         num = []
-        num_array.my_inject([]) { |result, element| num << element.to_s if element > 9}
+        num_array.my_inject([]) { |_result, element| num << element.to_s if element > 9 }
         expect(num).to eq(%w[10 20 30])
       end
     end
