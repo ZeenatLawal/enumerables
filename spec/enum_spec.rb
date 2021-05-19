@@ -73,4 +73,17 @@ describe Enumerable do
       end
     end
   end
+
+  describe "#my_none?" do
+    context 'if block given' do
+      it "returns true if none of the items yield true" do
+        expect(%w[Sharon Leo Leila Brian Arun].my_none? { |word| word.length > 6 }).to be(true)
+      end
+    end
+    context 'if block not given' do
+      it "returns true if none of the items satisfy a given condition" do
+        expect(%w[Sharon Leo Leila Brian Arun].my_none?(/c/)).to be(true)
+      end
+    end
+  end
 end
