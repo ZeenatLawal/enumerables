@@ -11,7 +11,6 @@ describe Enumerable do
     end
 
     context 'if block given' do
-      
       it 'yields item' do
         arr = array.my_each { |friend| friend }
         expect(arr).to eq(%w[Sharon Leo Leila Brian Arun])
