@@ -109,4 +109,19 @@ describe Enumerable do
       end
     end
   end
+
+  describe '#my_map' do
+    context 'if block not given' do
+      it 'returns enum' do
+        expect(array.my_map).to be_an Enumerator
+      end
+    end
+
+    context 'if block given' do
+      it 'returns a new array applying the given operation to the items' do
+        arr = array.my_map { |friend| friend.upcase }
+        expect(arr).to eq(%w[SHARON LEO LEILA BRIAN ARUN])
+      end
+    end
+  end
 end
