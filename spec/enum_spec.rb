@@ -60,4 +60,17 @@ describe Enumerable do
       end
     end
   end
+
+  describe "#my_any?" do
+    context 'if block given' do
+      it "returns true if any of the item yields true" do
+        expect(%w[Sharon Leo Leila Brian Arun].my_any? { |word| word.length > 5 }).to be(true)
+      end
+    end
+    context 'if block not given' do
+      it "returns false if any of the item satisfies a given condition" do
+        expect(%w[Sharon Leo Leila Brian Arun].my_any?(/a/)).to be(true)
+      end
+    end
+  end
 end
