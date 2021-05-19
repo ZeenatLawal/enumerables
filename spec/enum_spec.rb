@@ -48,7 +48,7 @@ describe Enumerable do
     end
   end
 
-  describe "#my_all?" do
+  describe '#my_all?' do
     context 'if block given' do
       it "returns false if all the items doesn't yield true" do
         expect(%w[Sharon Leo Leila Brian Arun].my_all? { |word| word.length > 5 }).to be(false)
@@ -61,50 +61,50 @@ describe Enumerable do
     end
   end
 
-  describe "#my_any?" do
+  describe '#my_any?' do
     context 'if block given' do
-      it "returns true if any of the item yields true" do
+      it 'returns true if any of the item yields true' do
         expect(%w[Sharon Leo Leila Brian Arun].my_any? { |word| word.length > 5 }).to be(true)
       end
     end
     context 'if block not given' do
-      it "returns false if any of the item satisfies a given condition" do
+      it 'returns false if any of the item satisfies a given condition' do
         expect(%w[Sharon Leo Leila Brian Arun].my_any?(/a/)).to be(true)
       end
     end
   end
 
-  describe "#my_none?" do
+  describe '#my_none?' do
     context 'if block given' do
-      it "returns true if none of the items yield true" do
+      it 'returns true if none of the items yield true' do
         expect(%w[Sharon Leo Leila Brian Arun].my_none? { |word| word.length > 6 }).to be(true)
       end
     end
     context 'if block not given' do
-      it "returns true if none of the items satisfy a given condition" do
+      it 'returns true if none of the items satisfy a given condition' do
         expect(%w[Sharon Leo Leila Brian Arun].my_none?(/c/)).to be(true)
       end
     end
   end
 
-  describe "#my_count" do
+  describe '#my_count' do
     context 'if block given' do
-      it "returns number of items satisfying the condition" do
+      it 'returns number of items satisfying the condition' do
         expect(%w[Sharon Leo Leila Brian Arun].my_count { |word| word.length > 5 }).to eq(1)
       end
     end
     context 'if block and argument given' do
-      it "returns number of arguments satisfying the condition" do
-        expect(%w[Sharon Leo Leila Brian Arun Leon Leone].my_count("Leo") { |word| word == "Leo" }).to eq(1)
+      it 'returns number of arguments satisfying the condition' do
+        expect(%w[Sharon Leo Leila Brian Arun Leon Leone].my_count('Leo') { |word| word == 'Leo' }).to eq(1)
       end
     end
     context 'if block not given, but argument given' do
-      it "returns count of that particular argument" do
-        expect(%w[Sharon Leo Leila Leo Brian Arun Leo].my_count("Leo")).to eq(3)
+      it 'returns count of that particular argument' do
+        expect(%w[Sharon Leo Leila Leo Brian Arun Leo].my_count('Leo')).to eq(3)
       end
     end
     context 'if block and argument both not given' do
-      it "returns size of the instance" do
+      it 'returns size of the instance' do
         expect(%w[Sharon Leo Leila Brian Arun].my_count).to eq(5)
       end
     end
@@ -119,7 +119,7 @@ describe Enumerable do
 
     context 'if block given' do
       it 'returns a new array applying the given operation to the items' do
-        arr = array.my_map { |friend| friend.upcase }
+        arr = array.my_map(&:upcase)
         expect(arr).to eq(%w[SHARON LEO LEILA BRIAN ARUN])
       end
     end
