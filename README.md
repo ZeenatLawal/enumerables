@@ -43,8 +43,6 @@
 - You can also run "rspec file-path" for the particular file you want to test from the directory
 - You can run "rubocop" inorder to check the linter errors
 
-## Authors
-
 👤 **Bhagyashree Patra**
 
 - GitHub: [@Vagyasri](https://github.com/Vagyasri)
