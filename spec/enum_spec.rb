@@ -86,4 +86,27 @@ describe Enumerable do
       end
     end
   end
+
+  describe "#my_count" do
+    context 'if block given' do
+      it "returns number of items satisfying the condition" do
+        expect(%w[Sharon Leo Leila Brian Arun].my_count { |word| word.length > 5 }).to eq(1)
+      end
+    end
+    context 'if block and argument given' do
+      it "returns number of arguments satisfying the condition" do
+        expect(%w[Sharon Leo Leila Brian Arun Leon Leone].my_count("Leo") { |word| word == "Leo" }).to eq(1)
+      end
+    end
+    context 'if block not given, but argument given' do
+      it "returns count of that particular argument" do
+        expect(%w[Sharon Leo Leila Leo Brian Arun Leo].my_count("Leo")).to eq(3)
+      end
+    end
+    context 'if block and argument both not given' do
+      it "returns size of the instance" do
+        expect(%w[Sharon Leo Leila Brian Arun].my_count).to eq(5)
+      end
+    end
+  end
 end
