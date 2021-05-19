@@ -1,7 +1,6 @@
-require 'rspec'
 require './enumerables'
 
-RSpec.describe Enumerable do
+describe Enumerable do
   array = %w[Sharon Leo Leila Brian Arun]
   describe '#my_each' do
     context 'if block not given' do
