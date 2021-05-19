@@ -2,6 +2,7 @@ require './enumerables'
 
 describe Enumerable do
   array = %w[Sharon Leo Leila Brian Arun]
+  num_array = [10, 20, 30, 5, 7, 9, 3]
   describe '#my_each' do
     context 'if block not given' do
       it 'returns enum' do
@@ -121,6 +122,22 @@ describe Enumerable do
       it 'returns a new array applying the given operation to the items' do
         arr = array.my_map(&:upcase)
         expect(arr).to eq(%w[SHARON LEO LEILA BRIAN ARUN])
+      end
+    end
+  end
+
+  describe '#my_inject' do
+    context 'if block given' do
+      it 'returns items that passes our filter' do
+        num = []
+        num_array.my_inject([]) { |result, element| num << element.to_s if element > 9}
+        expect(num).to eq(%w[10 20 30])
+      end
+    end
+    context 'if block not given, but argument given' do
+      it 'returns sum of items' do
+        num = num_array.my_inject(:+)
+        expect(num).to eq(84)
       end
     end
   end
